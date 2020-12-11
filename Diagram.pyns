@@ -1,0 +1,26 @@
+# PynSource Version 1.2
+{'type':'meta', 'info1':'Lorem ipsum dolor sit amet, consectetur adipiscing elit is latin. Comments are saved.'}
+{'type':'umlshape', 'id':'cls_DataGrabber', 'x':190, 'y':73, 'width':186, 'height':202, 'attrs': '__m_dict_Headers__|__m_dict_Response__|__m_strUSER_AGENT__|__m_strUrl__|__strResonseDoc__|m_dict_Soup', 'meths': 'GetData|__InitializeWithZero__|__init__'}
+{'type':'umlshape', 'id':'BeautifulSoup', 'x':83, 'y':29, 'width':140, 'height':28, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'requests.get', 'x':10, 'y':117, 'width':130, 'height':28, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'cls_FileHandler', 'x':964, 'y':40, 'width':178, 'height':170, 'attrs': '__m_fExcel__|__m_nMaxRecords__|__m_xl_CurrentSheet__|strFileName', 'meths': 'LoadRecords|SaveRecords|__init__'}
+{'type':'umlshape', 'id':'xl.load_workbook', 'x':741, 'y':14, 'width':170, 'height':28, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'cls_PredictionGrabber', 'x':46, 'y':325, 'width':220, 'height':202, 'attrs': 'objDG|strCnnUrl|strYahooUrl', 'meths': 'GetPredictionData|__CollectDividendValue__|__CollectEstimatedPrice__|__GetCnnData__|__GetYahooData__|__init__'}
+{'type':'umlshape', 'id':'DG.cls_DataGrabber', 'x':316, 'y':325, 'width':190, 'height':28, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'cls_ProgressManager', 'x':1481, 'y':210, 'width':234, 'height':234, 'attrs': 'm_dict_data|m_lst_RemainingData|m_nSkipVal|m_nTotalEntryNo|strFileName', 'meths': 'RecordProgress|__FormDataEntriesToProcess__|__GetDataEntries__|__GetRemainingDataEntries__|__GetTickerandCP__|__init__'}
+{'type':'umlshape', 'id':'json.load', 'x':1277, 'y':77, 'width':100, 'height':28, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'enum_ROrder', 'x':1828, 'y':251, 'width':120, 'height':128, 'attrs': 'CPRICE|DIVDND|EPRICE|GRPERC|QUERRY', 'meths': ''}
+{'type':'umlshape', 'id':'cls_RecordKeeper', 'x':996, 'y':327, 'width':178, 'height':186, 'attrs': '__m_nMaxRecords__|__m_nMinPercent__|m_Record', 'meths': 'AddEntry|LoadRecord|__CalculateGPerc__|__RecordLengthCheck__|__init__'}
+{'type':'umlshape', 'id':'Enum', 'x':1800, 'y':155, 'width':50, 'height':28, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'cls_ThreadPool', 'x':495, 'y':512, 'width':186, 'height':250, 'attrs': '__m_EntryCnt__|__m_Executer__|__m_ThreadLock__|__m_nNoofThreads__|__m_objFH__|__m_objPM__|__m_objRK__', 'meths': 'StartThreads|__ExtractTickerandCP__|__ProcessPredictedData|__StartProcessing__|__init__'}
+{'type':'umlshape', 'id':'threading.Lock', 'x':321, 'y':477, 'width':150, 'height':28, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'ThreadPoolExecutor', 'x':656, 'y':464, 'width':190, 'height':28, 'attrs': '', 'meths': ''}
+{'type':'umlshape', 'id':'cls_TickerandPCGrabber', 'x':1744, 'y':501, 'width':230, 'height':138, 'attrs': 'data', 'meths': '__byteify__|__init__|__json_load_byteified__|__json_loads_byteified__'}
+{'type':'edge', 'id':'BeautifulSoup_to_cls_DataGrabber', 'source':'BeautifulSoup', 'target':'cls_DataGrabber', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'requests.get_to_cls_DataGrabber', 'source':'requests.get', 'target':'cls_DataGrabber', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'xl.load_workbook_to_cls_FileHandler', 'source':'xl.load_workbook', 'target':'cls_FileHandler', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'DG.cls_DataGrabber_to_cls_PredictionGrabber', 'source':'DG.cls_DataGrabber', 'target':'cls_PredictionGrabber', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'json.load_to_cls_ProgressManager', 'source':'json.load', 'target':'cls_ProgressManager', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'enum_ROrder_to_Enum', 'source':'enum_ROrder', 'target':'Enum', 'uml_edge_type': 'generalisation'}
+{'type':'edge', 'id':'threading.Lock_to_cls_ThreadPool', 'source':'threading.Lock', 'target':'cls_ThreadPool', 'uml_edge_type': 'composition'}
+{'type':'edge', 'id':'ThreadPoolExecutor_to_cls_ThreadPool', 'source':'ThreadPoolExecutor', 'target':'cls_ThreadPool', 'uml_edge_type': 'composition'}

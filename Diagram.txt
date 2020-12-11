@@ -1,0 +1,112 @@
++-------------+
+|     Enum    |
+|-------------|
+|             |
++-------------+
+      .        
+     /_\       
+      |        
+      |        
+      |        
+      |        
+      |        
++-------------+
+| enum_ROrder |
+|-------------|
+| CPRICE      |
+| DIVDND      |
+| EPRICE      |
+| GRPERC      |
+| QUERRY      |
++-------------+
+                                                                                                   
+                                                                                                   
+                                                                                                   
+                                                                                                   
++------------------------+                                 +---------------+       +--------------+
+|    cls_DataGrabber     |                                 | BeautifulSoup |       | requests.get |
+|------------------------|                                 |---------------|       |--------------|
+| __m_dict_Headers__     |  ---->  [ BeautifulSoup ]       |               |       |              |
+| __m_dict_Response__    |  ---->  [ requests.get ]        +---------------+       +--------------+
+| __m_strUSER_AGENT__    |                                                                         
+| __m_strUrl__           |                                                                         
+| __strResonseDoc__      |                                                                         
+| m_dict_Soup            |                                                                         
+|------------------------|                                                                         
+| GetData                |                                                                         
+| __InitializeWithZero__ |                                                                         
+| __init__               |                                                                         
++------------------------+                                                                         
+                                                                                                                                                    
+                                                                                                                                                    
+                                                                                                                                                    
+                                                                                                                                                    
++-----------------------+                                    +------------------+       +---------------------------+                               
+|    cls_FileHandler    |                                    | xl.load_workbook |       |   cls_PredictionGrabber   |                               
+|-----------------------|                                    |------------------|       |---------------------------|                               
+| __m_fExcel__          |  ---->  [ xl.load_workbook ]       |                  |       | objDG                     |  ---->  [ DG.cls_DataGrabber ]
+| __m_nMaxRecords__     |                                    +------------------+       | strCnnUrl                 |                               
+| __m_xl_CurrentSheet__ |                                                               | strYahooUrl               |                               
+| strFileName           |                                                               |---------------------------|                               
+|-----------------------|                                                               | GetPredictionData         |                               
+| LoadRecords           |                                                               | __CollectDividendValue__  |                               
+| SaveRecords           |                                                               | __CollectEstimatedPrice__ |                               
+| __init__              |                                                               | __GetCnnData__            |                               
++-----------------------+                                                               | __GetYahooData__          |                               
+                                                                                        | __init__                  |                               
+                                                                                        +---------------------------+                               
+                                                                                                       
+                                                                                                       
+                                                                                                       
+                                                                                                       
++--------------------+       +------------------------------+                             +-----------+
+| DG.cls_DataGrabber |       |     cls_ProgressManager      |                             | json.load |
+|--------------------|       |------------------------------|                             |-----------|
+|                    |       | m_dict_data                  |  ---->  [ json.load ]       |           |
++--------------------+       | m_lst_RemainingData          |                             +-----------+
+                             | m_nSkipVal                   |                                          
+                             | m_nTotalEntryNo              |                                          
+                             | strFileName                  |                                          
+                             |------------------------------|                                          
+                             | RecordProgress               |                                          
+                             | __FormDataEntriesToProcess__ |                                          
+                             | __GetDataEntries__           |                                          
+                             | __GetRemainingDataEntries__  |                                          
+                             | __GetTickerandCP__           |                                          
+                             | __init__                     |                                          
+                             +------------------------------+                                          
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
+                                                                                                                  
++-----------------------+       +------------------------+                                      +----------------+
+|    cls_RecordKeeper   |       |     cls_ThreadPool     |                                      | threading.Lock |
+|-----------------------|       |------------------------|                                      |----------------|
+| __m_nMaxRecords__     |       | __m_EntryCnt__         |  ---->  [ ThreadPoolExecutor ]       |                |
+| __m_nMinPercent__     |       | __m_Executer__         |  ---->  [ threading.Lock ]           +----------------+
+| m_Record              |       | __m_ThreadLock__       |                                                        
+|-----------------------|       | __m_nNoofThreads__     |                                                        
+| AddEntry              |       | __m_objFH__            |                                                        
+| LoadRecord            |       | __m_objPM__            |                                                        
+| __CalculateGPerc__    |       | __m_objRK__            |                                                        
+| __RecordLengthCheck__ |       |------------------------|                                                        
+| __init__              |       | StartThreads           |                                                        
++-----------------------+       | __ExtractTickerandCP__ |                                                        
+                                | __ProcessPredictedData |                                                        
+                                | __StartProcessing__    |                                                        
+                                | __init__               |                                                        
+                                +------------------------+                                                        
+                                                         
+                                                         
+                                                         
+                                                         
++--------------------+       +--------------------------+
+| ThreadPoolExecutor |       |  cls_TickerandPCGrabber  |
+|--------------------|       |--------------------------|
+|                    |       | data                     |
++--------------------+       |--------------------------|
+                             | __byteify__              |
+                             | __init__                 |
+                             | __json_load_byteified__  |
+                             | __json_loads_byteified__ |
+                             +--------------------------+
