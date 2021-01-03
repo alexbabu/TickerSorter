@@ -1,6 +1,6 @@
-from enum import Enum
+from enum import IntEnum
 
-class enum_ROrder(Enum):
+class enum_ROrder(IntEnum):
     QUERRY = 0
     CPRICE = 1
     EPRICE = 2
