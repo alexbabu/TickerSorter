@@ -4,7 +4,7 @@ import json
 
 class cls_ProgressManager:
     def __init__(self, nProgSkpVal):
-        self.strFileName = 'Progress.txt'
+        # self.strFileName = 'Progress.txt'
         self.m_nSkipVal = nProgSkpVal
         self.m_lst_RemainingData = []
         self.__GetRemainingDataEntries__()
