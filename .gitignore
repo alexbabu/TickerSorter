@@ -1,0 +1,10 @@
+
+__pycache__/cls_ProgressManager.cpython-36.pyc
+.idea/misc.xml
+.idea/modules.xml
+*.xml
+*.pyc
+.idea/StockPredictor_V2.iml
+data.json
+*.xlsx
+Remaining_data.txt
