@@ -1,4 +1,5 @@
 
+<<<<<<< Updated upstream
 __pycache__/cls_ProgressManager.cpython-36.pyc
 .idea/misc.xml
 .idea/modules.xml
@@ -8,3 +9,32 @@ __pycache__/cls_ProgressManager.cpython-36.pyc
 data.json
 *.xlsx
 Remaining_data.txt
+=======
+.idea/misc.xml
+.idea/modules.xml
+.idea/StockPredictor_V2.iml
+.idea/vcs.xml
+.idea/workspace.xml
+__pycache__/cls_FileHandler.cpython-36.pyc
+__pycache__/cls_ProgressManager.cpython-36.pyc
+__pycache__/cls_RecordKeeper.cpython-36.pyc
+__pycache__/cls_TickerandCPGrabber.cpython-36.pyc
+cls_RecordKeeper.pyc
+cls_DataGrabber.pyc
+cls_FileHandler.pyc
+cls_MonthYearFinder.pyc
+cls_PredictionGrabber.pyc
+cls_ProgressManager.pyc
+cls_ThreadPool.pyc
+cls_TickerandCPGrabber.pyc
+data.json
+Recommendations.xlsx
+Recommendations_11_04_20.xlsx
+Recommendations_11_22_20.xlsx
+Recommendations.xlsx
+Recommendations_11_15_20.xlsx
+Recommendations_12_11_20.xlsx
+Remaining_data.txt
+Recommendations.xlsx
+>>>>>>> Stashed changes
+Recommendations.xlsx
