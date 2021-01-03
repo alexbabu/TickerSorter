@@ -1,11 +1,17 @@
 import openpyxl as xl
-
+import cls_MonthYearFinder as MYF
 
 class cls_FileHandler:
-    def __init__(self, strFileName, strWorkSheeName, nMaxRecords):
+    def __init__(self, strFileName, nMaxRecords):
         self.strFileName = strFileName
         self.__m_fExcel__ = xl.load_workbook(strFileName)
-        self.__m_xl_CurrentSheet__ = self.__m_fExcel__.get_sheet_by_name(strWorkSheeName)
+        objMYF = MYF.cls_MonthYearFinder()
+        strWorkSheetName = str(objMYF.m_nMonth) + '_' + str(objMYF.m_nYear)
+        try:
+            self.__m_xl_CurrentSheet__ = self.__m_fExcel__.get_sheet_by_name(strWorkSheetName)
+        except:
+            self.__m_fExcel__.create_sheet(strWorkSheetName)
+            self.__m_xl_CurrentSheet__ = self.__m_fExcel__.get_sheet_by_name(strWorkSheetName)
         self.__m_nMaxRecords__ = nMaxRecords
 
     def SaveRecords(self, Record):
