@@ -6,13 +6,26 @@ class cls_FileHandler:
         self.strFileName = strFileName
         self.__m_fExcel__ = xl.load_workbook(strFileName)
         objMYF = MYF.cls_MonthYearFinder()
-        strWorkSheetName = str(objMYF.m_nMonth) + '_' + str(objMYF.m_nYear)
+        self.m_strWorkSheetName = str(objMYF.m_nMonth) + '_' + str(objMYF.m_nYear)
         try:
-            self.__m_xl_CurrentSheet__ = self.__m_fExcel__.get_sheet_by_name(strWorkSheetName)
+            self.__m_xl_CurrentSheet__ = self.__m_fExcel__.get_sheet_by_name(self.m_strWorkSheetName)
         except:
-            self.__m_fExcel__.create_sheet(strWorkSheetName)
-            self.__m_xl_CurrentSheet__ = self.__m_fExcel__.get_sheet_by_name(strWorkSheetName)
+            self.__m_fExcel__.create_sheet(self.m_strWorkSheetName)
+            self.__m_xl_CurrentSheet__ = self.__m_fExcel__.get_sheet_by_name(self.m_strWorkSheetName)
         self.__m_nMaxRecords__ = nMaxRecords
+
+    def __ClearRecords__(self):
+        for nRows in range(2, 100):
+            strCellName = "A%d" % (nRows)
+            self.__m_xl_CurrentSheet__[strCellName].value = ''
+            strCellName = "B%d" % (nRows)
+            self.__m_xl_CurrentSheet__[strCellName].value = ''
+            strCellName = "C%d" % (nRows)
+            self.__m_xl_CurrentSheet__[strCellName].value = ''
+            strCellName = "D%d" % (nRows)
+            self.__m_xl_CurrentSheet__[strCellName].value = ''
+            strCellName = "E%d" % (nRows)
+            self.__m_xl_CurrentSheet__[strCellName].value = ''
 
     def SaveRecords(self, Record):
         for nRows in range(2, len(Record) + 1):
