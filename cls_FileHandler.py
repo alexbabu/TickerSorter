@@ -14,6 +14,22 @@ class cls_FileHandler:
             self.__m_xl_CurrentSheet__ = self.__m_fExcel__.get_sheet_by_name(strWorkSheetName)
         self.__m_nMaxRecords__ = nMaxRecords
 
+    def __ClearRecords__(self):
+        for nRows in range(2, 100):
+            nCnt = nRows - 2
+            strCellName = "A%d" % (nRows)
+            self.__m_xl_CurrentSheet__[strCellName].value = ''
+            strCellName = "B%d" % (nRows)
+            self.__m_xl_CurrentSheet__[strCellName].value = ''
+            strCellName = "C%d" % (nRows)
+            self.__m_xl_CurrentSheet__[strCellName].value = ''
+            strCellName = "D%d" % (nRows)
+            self.__m_xl_CurrentSheet__[strCellName].value = ''
+            strCellName = "E%d" % (nRows)
+            self.__m_xl_CurrentSheet__[strCellName].value = ''
+        self.__m_fExcel__.save(self.strFileName)
+        print('Successfully cleared file...')
+
     def SaveRecords(self, Record):
         for nRows in range(2, len(Record) + 1):
             nCnt = nRows - 2
@@ -27,7 +43,6 @@ class cls_FileHandler:
             self.__m_xl_CurrentSheet__[strCellName].value = round(float(Record[nCnt][3]), 4)
             strCellName = "E%d" % (nRows)
             self.__m_xl_CurrentSheet__[strCellName].value = round(float(Record[nCnt][4]), 4)
-
         self.__m_fExcel__.save(self.strFileName)
         print('Successfully saved file...')
 
