@@ -8,7 +8,7 @@ nMinPercent = 200
 nProgSkpVal = 100
 
 objFH = FH.cls_FileHandler('Recommendations.xlsx', nMaxRecords)
-objPM = PM.cls_ProgressManager(nProgSkpVal, objFH)
+objPM = PM.cls_ProgressManager(nProgSkpVal)
 objRK = RK.cls_RecordKeeper(nMaxRecords, nMinPercent)
 objTP = TP.cls_ThreadPool(objPM, objRK, objFH)
 

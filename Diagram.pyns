@@ -3,11 +3,11 @@
 {'type':'umlshape', 'id':'cls_DataGrabber', 'x':190, 'y':172, 'width':186, 'height':202, 'attrs': '__m_dict_Headers__|__m_dict_Response__|__m_strUSER_AGENT__|__m_strUrl__|__strResonseDoc__|m_dict_Soup', 'meths': 'GetData|__InitializeWithZero__|__init__'}
 {'type':'umlshape', 'id':'BeautifulSoup', 'x':0, 'y':94, 'width':140, 'height':28, 'attrs': '', 'meths': ''}
 {'type':'umlshape', 'id':'requests.get', 'x':10, 'y':172, 'width':130, 'height':28, 'attrs': '', 'meths': ''}
-{'type':'umlshape', 'id':'cls_FileHandler', 'x':964, 'y':40, 'width':178, 'height':202, 'attrs': '__m_fExcel__|__m_nMaxRecords__|__m_xl_CurrentSheet__|m_strWorkSheetName|strFileName', 'meths': 'LoadRecords|SaveRecords|__ClearRecords__|__init__'}
+{'type':'umlshape', 'id':'cls_FileHandler', 'x':964, 'y':40, 'width':178, 'height':170, 'attrs': '__m_fExcel__|__m_nMaxRecords__|__m_xl_CurrentSheet__|strFileName', 'meths': 'LoadRecords|SaveRecords|__init__'}
 {'type':'umlshape', 'id':'xl.load_workbook', 'x':741, 'y':14, 'width':170, 'height':28, 'attrs': '', 'meths': ''}
 {'type':'umlshape', 'id':'cls_PredictionGrabber', 'x':50, 'y':522, 'width':220, 'height':202, 'attrs': 'objDG|strCnnUrl|strYahooUrl', 'meths': 'GetPredictionData|__CollectDividendValue__|__CollectEstimatedPrice__|__GetCnnData__|__GetYahooData__|__init__'}
 {'type':'umlshape', 'id':'DG.cls_DataGrabber', 'x':20, 'y':388, 'width':190, 'height':28, 'attrs': '', 'meths': ''}
-{'type':'umlshape', 'id':'cls_ProgressManager', 'x':1481, 'y':210, 'width':234, 'height':250, 'attrs': '__m_objFH__|m_dict_data|m_lst_RemainingData|m_nSkipVal|m_nTotalEntryNo|strFileName', 'meths': 'RecordProgress|__FormDataEntriesToProcess__|__GetDataEntries__|__GetRemainingDataEntries__|__GetTickerandCP__|__init__'}
+{'type':'umlshape', 'id':'cls_ProgressManager', 'x':1481, 'y':210, 'width':234, 'height':234, 'attrs': 'm_dict_data|m_lst_RemainingData|m_nSkipVal|m_nTotalEntryNo|strFileName', 'meths': 'RecordProgress|__FormDataEntriesToProcess__|__GetDataEntries__|__GetRemainingDataEntries__|__GetTickerandCP__|__init__'}
 {'type':'umlshape', 'id':'json.load', 'x':1277, 'y':77, 'width':100, 'height':28, 'attrs': '', 'meths': ''}
 {'type':'umlshape', 'id':'enum_ROrder', 'x':2009, 'y':223, 'width':120, 'height':128, 'attrs': 'CPRICE|DIVDND|EPRICE|GRPERC|QUERRY', 'meths': ''}
 {'type':'umlshape', 'id':'cls_RecordKeeper', 'x':996, 'y':327, 'width':178, 'height':186, 'attrs': '__m_nMaxRecords__|__m_nMinPercent__|m_Record', 'meths': 'AddEntry|LoadRecord|__CalculateGPerc__|__RecordLengthCheck__|__init__'}
