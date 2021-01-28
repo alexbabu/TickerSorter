@@ -1,5 +1,5 @@
 +-------------+
-|     Enum    |
+|   IntEnum   |
 |-------------|
 |             |
 +-------------+
@@ -37,76 +37,101 @@
 | __InitializeWithZero__ |                                                                         
 | __init__               |                                                                         
 +------------------------+                                                                         
-                                                                                                                                                    
-                                                                                                                                                    
-                                                                                                                                                    
-                                                                                                                                                    
-+-----------------------+                                    +------------------+       +---------------------------+                               
-|    cls_FileHandler    |                                    | xl.load_workbook |       |   cls_PredictionGrabber   |                               
-|-----------------------|                                    |------------------|       |---------------------------|                               
-| __m_fExcel__          |  ---->  [ xl.load_workbook ]       |                  |       | objDG                     |  ---->  [ DG.cls_DataGrabber ]
-| __m_nMaxRecords__     |                                    +------------------+       | strCnnUrl                 |                               
-| __m_xl_CurrentSheet__ |                                                               | strYahooUrl               |                               
-| strFileName           |                                                               |---------------------------|                               
-|-----------------------|                                                               | GetPredictionData         |                               
-| LoadRecords           |                                                               | __CollectDividendValue__  |                               
-| SaveRecords           |                                                               | __CollectEstimatedPrice__ |                               
-| __init__              |                                                               | __GetCnnData__            |                               
-+-----------------------+                                                               | __GetYahooData__          |                               
-                                                                                        | __init__                  |                               
-                                                                                        +---------------------------+                               
-                                                                                                       
-                                                                                                       
-                                                                                                       
-                                                                                                       
-+--------------------+       +------------------------------+                             +-----------+
-| DG.cls_DataGrabber |       |     cls_ProgressManager      |                             | json.load |
-|--------------------|       |------------------------------|                             |-----------|
-|                    |       | m_dict_data                  |  ---->  [ json.load ]       |           |
-+--------------------+       | m_lst_RemainingData          |                             +-----------+
-                             | m_nSkipVal                   |                                          
-                             | m_nTotalEntryNo              |                                          
-                             | strFileName                  |                                          
-                             |------------------------------|                                          
-                             | RecordProgress               |                                          
-                             | __FormDataEntriesToProcess__ |                                          
-                             | __GetDataEntries__           |                                          
-                             | __GetRemainingDataEntries__  |                                          
-                             | __GetTickerandCP__           |                                          
-                             | __init__                     |                                          
-                             +------------------------------+                                          
-                                                                                                                  
-                                                                                                                  
-                                                                                                                  
-                                                                                                                  
-+-----------------------+       +------------------------+                                      +----------------+
-|    cls_RecordKeeper   |       |     cls_ThreadPool     |                                      | threading.Lock |
-|-----------------------|       |------------------------|                                      |----------------|
-| __m_nMaxRecords__     |       | __m_EntryCnt__         |  ---->  [ ThreadPoolExecutor ]       |                |
-| __m_nMinPercent__     |       | __m_Executer__         |  ---->  [ threading.Lock ]           +----------------+
-| m_Record              |       | __m_ThreadLock__       |                                                        
-|-----------------------|       | __m_nNoofThreads__     |                                                        
-| AddEntry              |       | __m_objFH__            |                                                        
-| LoadRecord            |       | __m_objPM__            |                                                        
-| __CalculateGPerc__    |       | __m_objRK__            |                                                        
-| __RecordLengthCheck__ |       |------------------------|                                                        
-| __init__              |       | StartThreads           |                                                        
-+-----------------------+       | __ExtractTickerandCP__ |                                                        
-                                | __ProcessPredictedData |                                                        
-                                | __StartProcessing__    |                                                        
-                                | __init__               |                                                        
-                                +------------------------+                                                        
-                                                         
-                                                         
-                                                         
-                                                         
-+--------------------+       +--------------------------+
-| ThreadPoolExecutor |       |  cls_TickerandPCGrabber  |
-|--------------------|       |--------------------------|
-|                    |       | data                     |
-+--------------------+       |--------------------------|
-                             | __byteify__              |
-                             | __init__                 |
-                             | __json_load_byteified__  |
-                             | __json_loads_byteified__ |
-                             +--------------------------+
+                                                                                                                     
+                                                                                                                     
+                                                                                                                     
+                                                                                                                     
++---------------------------+       +-----------------------+                                    +------------------+
+|       cls_FailerList      |       |    cls_FileHandler    |                                    | xl.load_workbook |
+|---------------------------|       |-----------------------|                                    |------------------|
+| m_arr_strFailerTickers    |       | __m_fExcel__          |  ---->  [ xl.load_workbook ]       |                  |
+|---------------------------|       | __m_nMaxRecords__     |                                    +------------------+
+| AddEntrytoFailerList      |       | __m_xl_CurrentSheet__ |                                                        
+| CheckifTickerFailedBefore |       | strFileName           |                                                        
+| EraseEntryfromFailerList  |       |-----------------------|                                                        
+| SaveFailerList            |       | LoadRecords           |                                                        
+| __init__                  |       | SaveRecords           |                                                        
++---------------------------+       | __ClearRecords__      |                                                        
+                                    | __init__              |                                                        
+                                    +-----------------------+                                                        
+                                                                                                                       
+                                                                                                                       
+                                                                                                                       
+                                                                                                                       
++---------------------+       +---------------------------+                                      +--------------------+
+| cls_MonthYearFinder |       |   cls_PredictionGrabber   |                                      | DG.cls_DataGrabber |
+|---------------------|       |---------------------------|                                      |--------------------|
+| m_nMonth            |       | objDG                     |  ---->  [ DG.cls_DataGrabber ]       |                    |
+| m_nYear             |       | strCnnUrl                 |                                      +--------------------+
+|---------------------|       | strYahooUrl               |                                                            
+| __init__            |       |---------------------------|                                                            
++---------------------+       | GetPredictionData         |                                                            
+                              | __CollectDividendValue__  |                                                            
+                              | __CollectEstimatedPrice__ |                                                            
+                              | __GetCnnData__            |                                                            
+                              | __GetYahooData__          |                                                            
+                              | __init__                  |                                                            
+                              +---------------------------+                                                            
+                                                                                                          
+                                                                                                          
+                                                                                                          
+                                                                                                          
++------------------------------+                             +-----------+       +-----------------------+
+|     cls_ProgressManager      |                             | json.load |       |    cls_RecordKeeper   |
+|------------------------------|                             |-----------|       |-----------------------|
+| __m_objFH__                  |  ---->  [ json.load ]       |           |       | __m_nMaxRecords__     |
+| m_dict_data                  |                             +-----------+       | __m_nMinPercent__     |
+| m_lst_RemainingData          |                                                 | m_Record              |
+| m_nSkipVal                   |                                                 |-----------------------|
+| m_nTotalEntryNo              |                                                 | AddEntry              |
+|------------------------------|                                                 | LoadRecord            |
+| RecordProgress               |                                                 | __CalculateGPerc__    |
+| __FormDataEntriesToProcess__ |                                                 | __RecordLengthCheck__ |
+| __GetDataEntries__           |                                                 | __init__              |
+| __GetRemainingDataEntries__  |                                                 +-----------------------+
+| __GetTickerandCP__           |                                                                          
+| __init__                     |                                                                          
++------------------------------+                                                                          
+                                                                                                                     
+                                                                                                                     
+                                                                                                                     
+                                                                                                                     
++------------------------------------+                                     +----------------+       +---------------+
+|           cls_ThreadPool           |                                     | threading.Lock |       | copy.deepcopy |
+|------------------------------------|                                     |----------------|       |---------------|
+| __m_EntryCnt__                     |  ---->  [ FL.cls_FailerList ]       |                |       |               |
+| __m_FailerProcessingThreads__      |  ---->  [ copy.deepcopy ]           +----------------+       +---------------+
+| __m_ThreadLock__                   |  ---->  [ threading.Lock ]                                                    
+| __m_arr_strDeepCopiedFailedTickers |                                                                               
+| __m_nCurrentFailerCnt__            |                                                                               
+| __m_nNoofThreads__                 |                                                                               
+| __m_nTotalFailerCnt__              |                                                                               
+| __m_objFH__                        |                                                                               
+| __m_objFL__                        |                                                                               
+| __m_objPM__                        |                                                                               
+| __m_objRK__                        |                                                                               
+| __m_threads__                      |                                                                               
+|------------------------------------|                                                                               
+| ProcessFailerList                  |                                                                               
+| StartThreads                       |                                                                               
+| __ExtractTickerandCP__             |                                                                               
+| __GetFailerTicker__                |                                                                               
+| __ProcessPredictedData__           |                                                                               
+| __SartFailerListProcessing__       |                                                                               
+| __StartProcessing__                |                                                                               
+| __init__                           |                                                                               
++------------------------------------+                                                                               
+                                                        
+                                                        
+                                                        
+                                                        
++-------------------+       +--------------------------+
+| FL.cls_FailerList |       |  cls_TickerandPCGrabber  |
+|-------------------|       |--------------------------|
+|                   |       | data                     |
++-------------------+       |--------------------------|
+                            | __byteify__              |
+                            | __init__                 |
+                            | __json_load_byteified__  |
+                            | __json_loads_byteified__ |
+                            +--------------------------+
