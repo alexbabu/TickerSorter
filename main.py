@@ -15,10 +15,10 @@ objTP = TP.cls_ThreadPool(objPM, objRK, objFH)
 
 tempRecords = objFH.LoadRecords()
 objRK.LoadRecord(tempRecords)
-#objTP.StartThreads()
+objTP.StartThreads()
 
-#objFH.SaveRecords(objRK.m_Record)
-#del(objPM.m_lst_RemainingData[:])
-#objPM.RecordProgress()
+objFH.SaveRecords(objRK.m_Record)
+del(objPM.m_lst_RemainingData[:])
+objPM.RecordProgress()
 
 objTP.ProcessFailerList()
