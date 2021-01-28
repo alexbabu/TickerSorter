@@ -1,4 +1,6 @@
 import requests
+#import asyncio
+#import aiohttp
 from bs4 import BeautifulSoup
 
 class cls_DataGrabber:
