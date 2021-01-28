@@ -13,6 +13,10 @@ class cls_PredictionGrabber:
             arr_nCnnData = self.__GetCnnData__(strTicker)
             if arr_nCnnData and len(arr_nCnnData) > 0 and arr_nCnnData[0] > 3:
                 return [arr_nCnnData[2], arr_nYahooData[1]]
+            else:
+                return []
+        else:
+            return []
 
     def __GetCnnData__(self, strTicker):
         strUrl = self.strCnnUrl + strTicker
