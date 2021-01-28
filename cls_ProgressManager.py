@@ -4,7 +4,6 @@ import json
 
 class cls_ProgressManager:
     def __init__(self, nProgSkpVal, objFH):
-        # self.strFileName = 'Progress.txt'
         self.__m_objFH__ = objFH
         self.m_nSkipVal = nProgSkpVal
         self.m_lst_RemainingData = []
@@ -38,15 +37,16 @@ class cls_ProgressManager:
             lst_strSymbolCP = strData.split(' ')
             self.m_lst_RemainingData.append([lst_strSymbolCP[0], float(lst_strSymbolCP[1])])
         if len(self.m_lst_RemainingData) == 0:
-            self.__m_objFH__.__ClearRecords__();
+            self.__m_objFH__.__ClearRecords__()
             self.__GetTickerandCP__()
+            self.__GetDataEntries__()
             self.__FormDataEntriesToProcess__()
         else:
             self.__GetDataEntries__()
             self.m_nTotalEntryNo = len(self.m_lst_RemainingData)
 
     def __FormDataEntriesToProcess__(self):
-        lst_strExchanges = ['NYSE', 'Nasdaq', 'New York Stock Exchange', 'NASDAQ']
+        lst_strExchanges = ['NYSE', 'Nasdaq', 'New York Stock Exchange', 'NASDAQ', 'BATS']
         for entry in self.m_dict_data:
             if 'exchange' in entry:
                 strExchange = entry['exchange']
