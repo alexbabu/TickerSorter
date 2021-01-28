@@ -3,6 +3,7 @@ import cls_RecordKeeper as RK
 import cls_ProgressManager as PM
 import cls_ThreadPool as TP
 
+
 nMaxRecords = 100
 nMinPercent = 200
 nProgSkpVal = 100
@@ -14,8 +15,10 @@ objTP = TP.cls_ThreadPool(objPM, objRK, objFH)
 
 tempRecords = objFH.LoadRecords()
 objRK.LoadRecord(tempRecords)
-objTP.StartThreads()
+#objTP.StartThreads()
 
-objFH.SaveRecords(objRK.m_Record)
-del(objPM.m_lst_RemainingData[:])
-objPM.RecordProgress()
+#objFH.SaveRecords(objRK.m_Record)
+#del(objPM.m_lst_RemainingData[:])
+#objPM.RecordProgress()
+
+objTP.ProcessFailerList()
