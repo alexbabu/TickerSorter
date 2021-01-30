@@ -62,7 +62,10 @@ class cls_ThreadPool:
         self.__m_objFL__.SaveFailerList()
 
     def __GetFailerTicker__(self):
-        return self.__m_arr_strDeepCopiedFailedTickers.pop(0)
+        if len(self.__m_arr_strDeepCopiedFailedTickers):
+            return self.__m_arr_strDeepCopiedFailedTickers.pop(0)
+        else:
+            return ''
 
     def __SartFailerListProcessing__(self):
         objPG = PG.cls_PredictionGrabber()
@@ -91,8 +94,8 @@ class cls_ThreadPool:
     def ProcessFailerList(self):
         print('Processing Failer List...')
         self.__m_arr_strDeepCopiedFailedTickers = copy.deepcopy(self.__m_objFL__.m_arr_strFailerTickers)
-        self.__m_nTotalFailerCnt__ = len(self.__m_arr_strDeepCopiedFailedTickers)
-        self.__m_nCurrentFailerCnt__ = 0
+        self.__m_nTotalFailerCnt__              = len(self.__m_arr_strDeepCopiedFailedTickers)
+        self.__m_nCurrentFailerCnt__            = 0
         self.__m_FailerProcessingThreads__ = [threading.Thread(target=self.__SartFailerListProcessing__(), args=(self,))] * \
                              self.__m_nNoofThreads__
         [thread.start() for thread in self.__m_FailerProcessingThreads__]

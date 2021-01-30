@@ -12,7 +12,10 @@ class cls_PredictionGrabber:
         if arr_nYahooData and len(arr_nYahooData) > 0:
             arr_nCnnData = self.__GetCnnData__(strTicker)
             if arr_nCnnData and len(arr_nCnnData) > 0 and arr_nCnnData[0] > 3:
-                return [arr_nCnnData[2], arr_nYahooData[1]]
+                if arr_nYahooData[0] > 0:
+                    return [(arr_nCnnData[2] + arr_nYahooData[0]) / 2, arr_nYahooData[1]]
+                else:
+                    return [arr_nCnnData[2], arr_nYahooData[1]]
             else:
                 return []
         else:

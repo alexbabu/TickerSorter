@@ -5,7 +5,7 @@ import cls_ThreadPool as TP
 
 
 nMaxRecords = 100
-nMinPercent = 200
+nMinPercent = 100
 nProgSkpVal = 100
 
 objFH = FH.cls_FileHandler('Recommendations.xlsx', nMaxRecords)
