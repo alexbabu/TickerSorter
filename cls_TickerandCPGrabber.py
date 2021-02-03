@@ -1,4 +1,4 @@
-from urllib2 import urlopen
+from urllib.request import urlopen
 import json
 
 class cls_TickerandPCGrabber:
@@ -22,8 +22,8 @@ class cls_TickerandPCGrabber:
 
     def __byteify__(self, data, ignore_dicts=False):
         # if this is a unicode string, return its string representation
-        if isinstance(data, unicode):
-            return data.encode('utf-8')
+        if isinstance(data, str):
+            return data
         # if this is a list of values, return list of byteified values
         if isinstance(data, list):
             return [self.__byteify__(item, ignore_dicts=True) for item in data]
@@ -32,7 +32,7 @@ class cls_TickerandPCGrabber:
         if isinstance(data, dict) and not ignore_dicts:
             return {
                 self.__byteify__(key, ignore_dicts=True): self.__byteify__(value, ignore_dicts=True)
-                for key, value in data.iteritems()
+                for key, value in data.items()
             }
         # if it's anything else, return it in its original form
         return data

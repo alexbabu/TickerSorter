@@ -3,7 +3,8 @@ import json
 
 
 class cls_ProgressManager:
-    def __init__(self, nProgSkpVal, objFH):
+    def __init__(self, nProgSkpVal, objFH, objFL):
+        self.__m_objFL__ = objFL
         self.__m_objFH__ = objFH
         self.m_nSkipVal = nProgSkpVal
         self.m_lst_RemainingData = []
@@ -48,9 +49,18 @@ class cls_ProgressManager:
     def __FormDataEntriesToProcess__(self):
         lst_strExchanges = ['NYSE', 'Nasdaq', 'New York Stock Exchange', 'NASDAQ', 'BATS']
         for entry in self.m_dict_data:
+            bExchangeFlag = False
+            bNeverFailed = False
             if 'exchange' in entry:
                 strExchange = entry['exchange']
                 for Exchange in lst_strExchanges:
                     if Exchange in strExchange:
-                        self.m_lst_RemainingData.append([entry['symbol'], float(entry['price'])])
+                        bExchangeFlag = True
+                        break
+            strSymbol = entry['symbol']
+            bNeverFailed = False
+            if not self.__m_objFL__.CheckifTickerFailedBefore(strSymbol):
+                bNeverFailed = True
+            if bNeverFailed and bExchangeFlag:
+                self.m_lst_RemainingData.append([entry['symbol'], entry['price']])
         self.m_nTotalEntryNo = len(self.m_lst_RemainingData)

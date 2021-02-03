@@ -2,17 +2,16 @@ from datetime import datetime
 import copy
 import threading
 import cls_PredictionGrabber as PG
-import cls_FailerList as FL
 
 class cls_ThreadPool:
-    def __init__(self, objPM, objRK, objFH):
+    def __init__(self, objPM, objRK, objFH, objFL):
         self.__m_nNoofThreads__ = 1
         self.__m_objPM__ = objPM
         self.__m_objRK__ = objRK
         self.__m_objFH__ = objFH
         self.__m_ThreadLock__ = threading.Lock()
         self.__m_EntryCnt__ = 0
-        self.__m_objFL__ = FL.cls_FailerList()
+        self.__m_objFL__ = objFL
 
     def __ExtractTickerandCP__(self):
         lstTemp = []
@@ -43,14 +42,13 @@ class cls_ThreadPool:
         while(True):
             lst_TickerCP = self.__ExtractTickerandCP__()
             if len(lst_TickerCP):
-                if not self.__m_objFL__.CheckifTickerFailedBefore(lst_TickerCP[0]):
-                    arr_nPredictions = objPG.GetPredictionData(str(lst_TickerCP[0]))
-                    if len(arr_nPredictions):
-                        self.__ProcessPredictedData__(arr_nPredictions, lst_TickerCP)
-                    else:
-                        self.__m_ThreadLock__.acquire()
-                        self.__m_objFL__.AddEntrytoFailerList(lst_TickerCP[0])
-                        self.__m_ThreadLock__.release()
+                arr_nPredictions = objPG.GetPredictionData(str(lst_TickerCP[0]))
+                if len(arr_nPredictions):
+                    self.__ProcessPredictedData__(arr_nPredictions, lst_TickerCP)
+                else:
+                    self.__m_ThreadLock__.acquire()
+                    self.__m_objFL__.AddEntrytoFailerList(lst_TickerCP[0])
+                    self.__m_ThreadLock__.release()
             else:
                 break
 
